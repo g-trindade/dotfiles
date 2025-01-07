@@ -81,7 +81,7 @@
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (select-frame-set-input-focus (selected-frame))
 
-(setq doom-theme 'fae-floss)
+(setq doom-theme 'doom-laserwave)
 
 (setq doom-fae-floss-brighter-modeline nil
       doom-fae-floss-brighter-comments nil
@@ -99,22 +99,50 @@
       "Q" #'mark-whole-buffer)
 
 (map! :leader
-        doom-leader-key  #'execute-extended-command
-        "`" #'+vertico/switch-workspace-buffer
-        "TAB" #'other-window
-        "'" #'comment-line
-        "H" help-map
-        "h" #'+tabs:previous-or-goto
-        "l" #'+tabs:next-or-goto)
+        doom-leader-key                           #'execute-extended-command
+        "`"                                       #'+vertico/switch-workspace-buffer
+        "TAB"                                     #'other-window
+        "'"                                       #'comment-line
+        "H"                                       help-map
+        "h"                                       #'+tabs:previous-or-goto
+        "l"                                       #'+tabs:next-or-goto
+        "]"                                       #'+workspace/switch-right
+        "["                                       #'+workspace/switch-left)
 
 (map! :leader
-        "c '"  #'comment-line)
+        "c '"                                     #'comment-line)
 
 (map! :leader :map evil-normal-state-map
-        "b h"  #'previous-buffer
-        "b l"  #'next-buffer
-        "b s"  #'doom/switch-to-scratch-buffer
-        "b S"  #'doom/open-scratch-buffer)
+        "b h"                                     #'previous-buffer
+        "b l"                                     #'next-buffer
+        "b s"                                     #'doom/switch-to-scratch-buffer
+        "b S"                                     #'doom/open-scratch-buffer)
+
+(map! :leader :map evil-normal-state-map
+        :desc "Display tab bar"           "y TAB" #'+workspace/display
+        :desc "Switch workspace"          "y ."   #'+workspace/switch-to
+        :desc "Switch to last workspace"  "y `"   #'+workspace/other
+        :desc "New workspace"             "y n"   #'+workspace/new
+        :desc "New named workspace"       "y N"   #'+workspace/new-named
+        :desc "Load workspace from file"  "y l"   #'+workspace/load
+        :desc "Save workspace to file"    "y s"   #'+workspace/save
+        :desc "Kill session"              "y x"   #'+workspace/kill-session
+        :desc "Kill this workspace"       "y d"   #'+workspace/kill
+        :desc "Delete saved workspace"    "y D"   #'+workspace/delete
+        :desc "Rename workspace"          "y r"   #'+workspace/rename
+        :desc "Restore last session"      "y R"   #'+workspace/restore-last-session
+        :desc "Next workspace"            "y ]"   #'+workspace/switch-right
+        :desc "Previous workspace"        "y ["   #'+workspace/switch-left
+        :desc "Switch to 1st workspace"   "y 1"   #'+workspace/switch-to-0
+        :desc "Switch to 2nd workspace"   "y 2"   #'+workspace/switch-to-1
+        :desc "Switch to 3rd workspace"   "y 3"   #'+workspace/switch-to-2
+        :desc "Switch to 4th workspace"   "y 4"   #'+workspace/switch-to-3
+        :desc "Switch to 5th workspace"   "y 5"   #'+workspace/switch-to-4
+        :desc "Switch to 6th workspace"   "y 6"   #'+workspace/switch-to-5
+        :desc "Switch to 7th workspace"   "y 7"   #'+workspace/switch-to-6
+        :desc "Switch to 8th workspace"   "y 8"   #'+workspace/switch-to-7
+        :desc "Switch to 9th workspace"   "y 9"   #'+workspace/switch-to-8
+        :desc "Switch to final workspace" "y 0"   #'+workspace/switch-to-final)
 
 ;; ======== Packages config ========
 
